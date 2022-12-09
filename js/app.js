@@ -1,6 +1,6 @@
 var x = 0;
 var device = 0;
-var timer = 14336;
+var timer = 0;
 var timerInterval;
 var time = document.querySelector('.timer');
 
