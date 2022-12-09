@@ -1,16 +1,37 @@
 var x = 0;
+var device = 0;
 var timer = 14336;
 var timerInterval;
 var time = document.querySelector('.timer');
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i
+    .test(navigator.userAgent)) {
 
-    alert("Вы используете мобильное устройство (телефон или планшет).")
+    document.querySelector(".help").innerHTML = "Tap the screen to start, stop or restart the timer";
+    document.querySelector(".help").style.bottom = "150px";
+    device = 1;
+}
 
-} else alert("Вы используете ПК.")
+document.querySelector("body").onclick = function() {
+  if (device === 1) {
+		if(x === 0) {
+			x = 1;
+			start();
+		}
+		else if (x == 1) {
+			x = 2;
+			stop();
+		}
+		else {
+			x = 0;
+			timer = 0;
+			time.innerHTML = "00:00:00:000";
+		}
+	}
+}
 
 document.addEventListener('keydown', function(e) {
-	if (e.which === 32) {
+	if (e.which === 32 && device === 0) {
 		if(x === 0) {
 			x = 1;
 			start();
