@@ -3,8 +3,7 @@ var timer = 14336;
 var timerInterval;
 var time = document.querySelector('.timer');
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i
-    .test(navigator.userAgent)) {
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 
     alert("Вы используете мобильное устройство (телефон или планшет).")
 
