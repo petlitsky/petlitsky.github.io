@@ -1,0 +1,63 @@
+* {
+	padding: 0;
+	margin: 0;
+	bottom: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	font-family: 'Kelly Slab', cursive;
+	background-color: #101010;
+}
+
+.day-time {
+	position: relative;
+	width: 200px;
+	top: 0;
+	left: calc(100vw - 260px);
+	text-align: center;
+	border-radius: 50px;
+	margin: 15px;
+	padding: 15px;
+	background-color: #1f1f1f;
+	color: #fff;
+	font-size: 30px;
+}
+
+.timer {
+	position: absolute;
+	width: 100vw;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	color: #c1c1c1;
+	font-size: 40px;
+}
+
+.help {
+	position: absolute;
+	margin: 15px;
+	color: #515151;
+	bottom: 0;
+	right: 0;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	border-radius: 50px;
+	margin: 15px;
+	padding: 15px;
+	background-color: #1f1f1f;
+	color: #fff;
+}
+
+.footer i {
+	margin: 0 30px;
+}
