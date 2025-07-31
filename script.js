@@ -46,7 +46,7 @@ input.addEventListener('input', async () => {
       container.innerHTML = `<div class="loading">Загружаю воспоминания<span id="dots">.</span></div>`;
       startDotAnimation();
 
-      const hideDelay = Math.floor(Math.random() * 1000) + 1000;
+      const hideDelay = Math.floor(Math.random() * 2000) + 5000;
       setTimeout(() => {
         container.classList.add('hidden');
 
@@ -58,7 +58,7 @@ input.addEventListener('input', async () => {
           music.play();
         }, 1000);
       }, hideDelay);
-    }, 1000);
+    }, 5000);
   } else {
     result.textContent = 'Неверный пароль ❌';
     result.className = 'result fail';
@@ -86,7 +86,7 @@ if (startButton) {
     typingText.classList.remove('hidden');
 
     typeSequence([
-      { text: '7 февраля 2022 год', className: 'line1' },
+      { text: '7 февраля 2022 года', className: 'line1' },
       { text: 'Начало нашего общения', className: 'line2' }
     ]).then(() => {
       setTimeout(async () => {
@@ -119,6 +119,167 @@ if (startButton) {
                   { text: '23 марта 2023 года', className: 'line1' },
                   { text: 'У тебя дома', className: 'line2' }
                 ]);
+                setTimeout(() => {
+                  typingText.classList.add('move-up');
+
+                  const grid = document.getElementById('photoGrid');
+                  grid.classList.remove('hidden');
+
+                  // Плавное появление
+                  setTimeout(() => {
+                    grid.classList.add('show');
+                  }, 100);
+                }, 4000); // через 4 секунды после последней печати
+                setTimeout(async () => {
+                  const line1 = document.querySelector('.line1');
+                  const line2 = document.querySelector('.line2');
+
+                  await clearText(line1);
+                  await typeNewText(line1, '25 и 28 мая 2023 года');
+
+                  await clearText(line2);
+                  await typeNewText(line2, 'Прощай школа');
+
+                  // Меняем фотографии
+                  const photos = document.querySelectorAll('.photo-grid img');
+                  photos.forEach((img, index) => {
+                    img.src = `./image/${index + 5}.jpg`;
+                  });
+                  setTimeout(async () => {
+                    const line1 = document.querySelector('.line1');
+                    const line2 = document.querySelector('.line2');
+
+                    await clearText(line1);
+                    await typeNewText(line1, '6 февраля 2024 года');
+
+                    await clearText(line2);
+                    await typeNewText(line2, 'Зимняя пора');
+
+                    // Меняем фотографии
+                    const photos = document.querySelectorAll('.photo-grid img');
+                    photos.forEach((img, index) => {
+                      img.src = `./image/${index + 9}.jpg`;
+                    });
+                    setTimeout(async () => {
+                      // Исчезновение сетки
+                      const grid = document.getElementById('photoGrid');
+                      grid.classList.remove('show');
+                      setTimeout(() => {
+                        grid.classList.add('hidden');
+                      }, 500);
+
+                      // Возврат текста в центр
+                      typingText.classList.remove('move-up');
+
+                      const line1 = document.querySelector('.line1');
+                      const line2 = document.querySelector('.line2');
+
+                      // Ждём пока вернется анимация
+                      setTimeout(async () => {
+                        await clearText(line1);
+                        await typeNewText(line1, '8 декабря 2024 года');
+
+                        await clearText(line2);
+                        await typeNewText(line2, 'Конец истории?');
+                        setTimeout(async () => {
+                          const line1 = document.querySelector('.line1');
+                          const line2 = document.querySelector('.line2');
+
+                          await clearText(line1);
+                          await typeNewText(line1, 'Это был лишь эпизод.');
+
+                          await clearText(line2);
+                          await typeNewText(line2, 'История продолжается.');
+                          setTimeout(async () => {
+                            const line1 = document.querySelector('.line1');
+                            const line2 = document.querySelector('.line2');
+
+                            // Поднимаем текст вверх (если еще не поднят)
+                            typingText.classList.add('move-up');
+
+                            // Стираем и печатаем финальный текст
+                            await clearText(line1);
+                            await typeNewText(line1, 'Июль 2025 года');
+
+                            await clearText(line2);
+                            await typeNewText(line2, 'Вчера, сегодня и завтра');
+
+                            // Показываем новую сетку фотографий
+                            const grid = document.getElementById('photoGrid');
+                            grid.classList.remove('hidden');
+
+                            // Обновляем изображения на 13–16.jpg
+                            const photos = document.querySelectorAll('.photo-grid img');
+                            photos.forEach((img, index) => {
+                              img.src = `./image/${index + 13}.jpg`;
+                            });
+
+                            // Плавное появление
+                            setTimeout(() => {
+                              grid.classList.add('show');
+                            }, 100);
+                            setTimeout(() => {
+                              // Меняем фотографии на 17–20
+                              const photos = document.querySelectorAll('.photo-grid img');
+                              photos.forEach((img, index) => {
+                                img.src = `./image/${index + 17}.jpg`;
+                              });
+                              setTimeout(() => {
+                                // Меняем фотографии на 17–20
+                                const photos = document.querySelectorAll('.photo-grid img');
+                                photos.forEach((img, index) => {
+                                  img.src = `./image/${index + 21}.jpg`;
+                                });
+                                setTimeout(() => {
+                                  // Меняем фотографии на 17–20
+                                  const photos = document.querySelectorAll('.photo-grid img');
+                                  photos.forEach((img, index) => {
+                                    img.src = `./image/${index + 25}.jpg`;
+                                  });
+                                  setTimeout(() => {
+                                    // Меняем фотографии на 17–20
+                                    const photos = document.querySelectorAll('.photo-grid img');
+                                    photos.forEach((img, index) => {
+                                      img.src = `./image/${index + 29}.jpg`;
+                                    });
+                                    setTimeout(() => {
+                                      // Меняем фотографии на 17–20
+                                      const photos = document.querySelectorAll('.photo-grid img');
+                                      photos.forEach((img, index) => {
+                                        img.src = `./image/${index + 33}.jpg`;
+                                      });
+                                      setTimeout(async () => {
+                                        // Убираем сетку
+                                        const grid = document.getElementById('photoGrid');
+                                        grid.classList.remove('show');
+                                        setTimeout(() => {
+                                          grid.classList.add('hidden');
+                                        }, 500);
+
+                                        // Возвращаем текст на середину
+                                        typingText.classList.remove('move-up');
+
+                                        const line1 = document.querySelector('.line1');
+                                        const line2 = document.querySelector('.line2');
+
+                                        // Стираем по очереди и печатаем новые строки
+                                        await clearText(line1);
+                                        await clearText(line2);
+
+                                        await typeNewText(line1, 'Я люблю тебя солнышко❤️');
+                                        await typeNewText(line2, 'До встречи 30 августа');
+                                      }, 7000);
+                                    }, 7000);
+                                  }, 7000);
+                                }, 7000);
+                              }, 7000);
+                            }, 7000);
+                          }, 7000);
+                        }, 7000);
+                      }, 1000);
+                    }, 7000);
+                  }, 7000);
+                }, 7000);
               }, 3000);
             }, 2000);
           }, 5000);

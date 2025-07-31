@@ -290,7 +290,7 @@ body.remove-dimmed::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: white;
   font-family: 'Courier New', monospace;
   white-space: nowrap;
@@ -316,14 +316,14 @@ body.remove-dimmed::before {
 }
 
 .line1 {
-  font-size: 2.2rem;
+  font-size: 1.4rem;
   font-family: 'Courier New', monospace;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .line2 {
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-family: 'Courier New', monospace;
   text-align: center;
 }
@@ -341,3 +341,35 @@ body.remove-dimmed::before {
   transition: top 1s ease;
 }
 
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: fit-content;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 2;
+  margin-top: 50px; /* отступ сверху — 50px */
+}
+
+.photo-grid img {
+  width: 110px;  /* было 135px */
+  height: 195px; /* было 240px */
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+  
+
+.photo-grid.show {
+  opacity: 1;
+}
+
+.photo-grid.hidden {
+  display: none;
+}
