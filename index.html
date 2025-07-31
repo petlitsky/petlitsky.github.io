@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Проверка пароля</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	<a href="for-my-girl.html">Маленький уголок</a>
+  <div class="container">
+    <h1>Введи пароль ❤️</h1>
+    <div class="heart-input">
+      <input id="passwordInput" type="password" placeholder="Пароль..." autocomplete="off" />
+      <span id="heartIcon" class="heart">❤️</span>
+    </div>
+    <div id="result" class="result"></div>
+  </div>
+
+<div id="record" class="record hidden">
+  <div class="record-inner">
+    <img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753" alt="Record" class="vinyl" />
+    <img src="./image/one.jpg" alt="Label" class="label" />
+  </div>
+
+  <div class="controls">
+    <button id="prevBtn" class="nav-button glow-button" aria-label="Назад">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+
+    <button id="nextBtn" class="nav-button glow-button" aria-label="Вперёд">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+  <audio id="bgMusic" src="./music/one.mp3" preload="auto"></audio>
+
+
+  <script src="script.js"></script>
 </body>
 </html>
