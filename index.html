@@ -16,30 +16,43 @@
     <div id="result" class="result"></div>
   </div>
 
-<div id="record" class="record hidden">
-  <div class="record-inner">
-    <img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753" alt="Record" class="vinyl" />
-    <img src="./image/one.jpg" alt="Label" class="label" />
+  <div id="record" class="record hidden">
+    <div class="record-text-top">
+      <h2 class="title">Обернись</h2>
+      <p class="subtitle">Баста, Город 312</p>
+    </div>
+
+    <div class="vinyl-wrapper">
+      <img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753" alt="Record" class="vinyl" />
+      <img src="./image/one.jpg" alt="Label" class="label" />
+    </div>
+
+    <div class="record-text-bottom">
+      <p class="start-text">Начнем?</p>
+      <button class="start-button" aria-label="Начать">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+          <polyline points="8 5 16 12 8 19" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div class="controls">
-    <button id="prevBtn" class="nav-button glow-button" aria-label="Назад">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
-    </button>
-
-    <button id="nextBtn" class="nav-button glow-button" aria-label="Вперёд">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <polyline points="9 18 15 12 9 6"/>
-      </svg>
-    </button>
+<!-- Верхняя шапка -->
+<div id="topBar" class="top-bar hidden">
+  <div class="top-bar-left">
+    <img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753" class="mini-vinyl" />
+    <div class="top-text">
+      <div class="title">Обернись</div>
+      <div class="subtitle">Баста, Город 312</div>
+    </div>
   </div>
+  <div class="top-bar-right">❤️</div>
 </div>
 
+<!-- Текст в центре -->
+<div id="typingText" class="typing-text hidden"></div>
+
   <audio id="bgMusic" src="./music/one.mp3" preload="auto"></audio>
-
-
   <script src="script.js"></script>
 </body>
 </html>

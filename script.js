@@ -4,6 +4,9 @@ const result = document.getElementById('result');
 const container = document.querySelector('.container');
 const record = document.getElementById('record');
 const music = document.getElementById('bgMusic');
+const startButton = document.querySelector('.start-button');
+const topBar = document.getElementById('topBar');
+const typingText = document.getElementById('typingText');
 
 const correctHash = 'cbfad02f9ed2a8d1e08d8f74f5303e9eb93637d47f82ab6f1c15871cf8dd0481';
 let visible = false;
@@ -43,17 +46,17 @@ input.addEventListener('input', async () => {
       container.innerHTML = `<div class="loading">Загружаю воспоминания<span id="dots">.</span></div>`;
       startDotAnimation();
 
-      // Через 5–7 секунд скрываем контейнер и показываем пластинку
       const hideDelay = Math.floor(Math.random() * 1000) + 1000;
       setTimeout(() => {
         container.classList.add('hidden');
 
-        // Показать пластинку через 1 сек после скрытия
         setTimeout(() => {
           record.classList.add('show');
-          playLoopedSegment(music, 146, 168); // 2:26 – 2:48
+          music.currentTime = 0;
+          music.loop = true;
+          music.volume = 0.5;
+          music.play();
         }, 1000);
-
       }, hideDelay);
     }, 1000);
   } else {
@@ -75,47 +78,27 @@ function startDotAnimation() {
   }, 500);
 }
 
-function playLoopedSegment(audio, startTime, endTime) {
-  const fadeDuration = 2;
-  const maxVolume = 0.5;
+if (startButton) {
+  startButton.addEventListener('click', () => {
+    // Убрать всё остальное
+    document.getElementById('record').classList.remove('show');
+    document.body.classList.add('dimmed');
 
-  audio.currentTime = startTime;
-  audio.volume = 0;
-  audio.play();
+    // Показать шапку
+    topBar.classList.add('show');
 
-  // Fade in
-  const fadeIn = setInterval(() => {
-    if (audio.volume < maxVolume) {
-      audio.volume = Math.min(audio.volume + 0.05, maxVolume);
-    } else {
-      clearInterval(fadeIn);
-    }
+    // Напечатать "2023 год"
+    typingText.classList.remove('hidden');
+    typeText('2023 год');
+  });
+}
+
+function typeText(text) {
+  typingText.textContent = '';
+  let index = 0;
+  const interval = setInterval(() => {
+    typingText.textContent += text[index];
+    index++;
+    if (index >= text.length) clearInterval(interval);
   }, 200);
-
-  // Loop handler
-  const loop = setInterval(() => {
-    if (audio.currentTime >= endTime - fadeDuration) {
-      // Start fade out
-      const fadeOut = setInterval(() => {
-        if (audio.volume > 0.05) {
-          audio.volume = Math.max(audio.volume - 0.05, 0);
-        } else {
-          clearInterval(fadeOut);
-          audio.pause();
-          audio.currentTime = startTime;
-          audio.play();
-
-          // Restart fade in
-          audio.volume = 0;
-          const fadeInAgain = setInterval(() => {
-            if (audio.volume < maxVolume) {
-              audio.volume = Math.min(audio.volume + 0.05, maxVolume);
-            } else {
-              clearInterval(fadeInAgain);
-            }
-          }, 200);
-        }
-      }, 200);
-    }
-  }, 500);
 }

@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  user-select: none; /* запрет выделения по умолчанию */
+  user-select: none;
 }
 
 body {
@@ -36,13 +36,6 @@ body {
   pointer-events: none;
 }
 
-
-.loading {
-  font-size: 1.2rem;
-  color: white;
-  white-space: nowrap;
-}
-
 h1 {
   font-size: 1.8rem;
   margin-bottom: 25px;
@@ -55,7 +48,7 @@ h1 {
 }
 
 .heart-input input {
-  user-select: text; /* разрешить ввод и выделение */
+  user-select: text;
   width: 100%;
   padding: 14px 20px;
   padding-right: 45px;
@@ -118,72 +111,84 @@ h1 {
   opacity: 1;
 }
 
-.record-inner {
+.record-text-top {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.record-text-top .title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+}
+
+.record-text-top .subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 5px 0 0;
+}
+
+.vinyl-wrapper {
   position: relative;
   width: 220px;
   height: 220px;
-  animation: spin 5s linear infinite;
   margin: 0 auto;
+  animation: spin 5s linear infinite;
 }
 
-.vinyl {
+.vinyl-wrapper .vinyl {
   width: 100%;
   height: 100%;
-  display: block;
 }
 
-.label {
+.vinyl-wrapper .label {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
-/* 🔺 Кнопки навигации */
-.controls {
-  margin-top: 30px;
+.record-text-bottom {
+  margin-top: 25px;
   display: flex;
-  justify-content: center;
-  gap: 60px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.nav-button {
-  width: 50px;
-  height: 50px;
-  background: #2f2f2f;
-  border: 2px solid #ff4d4d;
-  border-radius: 50%;
-  color: #ff4d4d;
-  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+.start-text {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.start-button {
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.4);
+  transition: background 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.nav-button svg {
-  stroke: #ff4d4d;
-  transition: stroke 0.3s ease;
+.start-button svg {
+  stroke: white;
+  width: 24px;
+  height: 24px;
 }
 
-.nav-button:hover {
-  background: #ff4d4d;
-  box-shadow: 0 0 20px rgba(255, 77, 77, 0.8);
-  transform: scale(1.1);
-}
-
-.nav-button:hover svg {
-  stroke: #fff;
-}
-
-.nav-button:active {
-  transform: scale(0.95);
-  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+.start-button:hover {
+  background-color: #ff1e4b;
 }
 
 @keyframes spin {
@@ -206,4 +211,79 @@ h1 {
     font-size: 1rem;
     right: 12px;
   }
+}
+
+/* Шапка сверху */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  transform: translateY(-100%);
+  transition: transform 0.7s ease;
+}
+
+.top-bar.show {
+  transform: translateY(0);
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mini-vinyl {
+  width: 40px;
+  height: 40px;
+  animation: spin 5s linear infinite;
+}
+
+.top-text .title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.top-text .subtitle {
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+.top-bar-right {
+  font-size: 2rem;
+  color: #ff4d6d;
+}
+
+/* Затемнение фона */
+body.dimmed::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.6);
+  z-index: 50;
+}
+
+/* Печатающийся текст */
+.typing-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+  z-index: 60;
 }
