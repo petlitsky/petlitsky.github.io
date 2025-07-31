@@ -80,25 +80,126 @@ function startDotAnimation() {
 
 if (startButton) {
   startButton.addEventListener('click', () => {
-    // Убрать всё остальное
     document.getElementById('record').classList.remove('show');
     document.body.classList.add('dimmed');
-
-    // Показать шапку
     topBar.classList.add('show');
-
-    // Напечатать "2023 год"
     typingText.classList.remove('hidden');
-    typeText('2023 год');
+
+    typeSequence([
+      { text: '7 февраля 2022 год', className: 'line1' },
+      { text: 'Начало нашего общения', className: 'line2' }
+    ]).then(() => {
+      setTimeout(async () => {
+        const line1 = document.querySelector('.line1');
+        const line2 = document.querySelector('.line2');
+
+        await clearText(line1);
+        await typeNewText(line1, '12 декабря 2023 года');
+
+        await clearText(line2);
+        await typeNewText(line2, 'Начало наших отношений');
+
+        setTimeout(async () => {
+          await clearText(line2);
+          await clearText(line1);
+
+          await typeNewText(line1, 'История начинается', 80);
+
+          setTimeout(() => {
+            typingText.classList.add('fade-out');
+            document.body.classList.add('remove-dimmed');
+            setTimeout(() => {
+              document.body.classList.remove('dimmed', 'remove-dimmed');
+              typingText.classList.add('hidden');
+
+              setTimeout(() => {
+                typingText.classList.remove('hidden', 'fade-out');
+                typingText.classList.add('move-up'); // добавляем смещение вверх
+                typeSequence([
+                  { text: '23 марта 2023 года', className: 'line1' },
+                  { text: 'У тебя дома', className: 'line2' }
+                ]);
+              }, 3000);
+            }, 2000);
+          }, 5000);
+        }, 5000);
+      }, 5000);
+    });
   });
 }
 
-function typeText(text) {
-  typingText.textContent = '';
-  let index = 0;
-  const interval = setInterval(() => {
-    typingText.textContent += text[index];
-    index++;
-    if (index >= text.length) clearInterval(interval);
-  }, 200);
+function typeSequence(lines, speed = 80) {
+  typingText.innerHTML = '';
+  let lineIndex = 0;
+
+  return new Promise(resolve => {
+    function typeLine() {
+      if (lineIndex >= lines.length) {
+        resolve();
+        return;
+      }
+
+      const { text, className } = lines[lineIndex];
+      const lineElem = document.createElement('div');
+      lineElem.className = className;
+
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      cursor.textContent = '|';
+
+      typingText.appendChild(lineElem);
+      lineElem.appendChild(cursor);
+
+      let i = 0;
+      const interval = setInterval(() => {
+        lineElem.textContent = text.slice(0, i + 1);
+        lineElem.appendChild(cursor);
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          cursor.remove();
+          lineIndex++;
+          setTimeout(typeLine, 500);
+        }
+      }, speed);
+    }
+
+    typeLine();
+  });
+}
+
+function clearText(elem) {
+  return new Promise(resolve => {
+    let text = elem.textContent;
+    const interval = setInterval(() => {
+      text = text.slice(0, -1);
+      elem.textContent = text + '|';
+      if (text.length === 0) {
+        clearInterval(interval);
+        elem.textContent = '';
+        resolve();
+      }
+    }, 50);
+  });
+}
+
+function typeNewText(elem, newText, speed = 80) {
+  return new Promise(resolve => {
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    cursor.textContent = '|';
+    elem.appendChild(cursor);
+
+    let i = 0;
+    const interval = setInterval(() => {
+      elem.textContent = newText.slice(0, i + 1);
+      elem.appendChild(cursor);
+      i++;
+      if (i >= newText.length) {
+        clearInterval(interval);
+        cursor.remove();
+        resolve();
+      }
+    }, speed);
+  });
 }
