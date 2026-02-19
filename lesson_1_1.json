@@ -1,0 +1,21 @@
+{
+  "title": "Введение в Arduino: Твой первый скетч",
+  "content": [
+    {
+      "type": "text",
+      "value": "Arduino — это сердце твоих будущих проектов. Сегодня мы научим плату 'дышать'."
+    },
+    {
+      "type": "text",
+      "value": "Скопируй этот код в Arduino IDE и загрузи в плату:"
+    },
+    {
+      "type": "code",
+      "value": "void setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}"
+    },
+    {
+      "type": "text",
+      "value": "Если встроенный светодиод начал мигать — ты все сделал правильно!"
+    }
+  ]
+}
